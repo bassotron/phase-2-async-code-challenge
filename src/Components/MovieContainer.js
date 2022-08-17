@@ -2,14 +2,33 @@ import React from "react";
 import MovieCard from "./MovieCard";
 import Filter from "./Filter";
 import Search from "./Search";
+import { Link } from 'react-router-dom'
 
-function MovieContainer() {
+function MovieContainer({ displayMovie, movieState  }) {
+  
+  
+    
+  
+
+  
+  
   return (
     <div>
-      <h1>Watchlist</h1>
-      <Search /><br/>
-      <Filter />
-      {/* render a list of <MovieCard> components in here */} 
+     <Link to={"/"}>Home</Link><br></br>
+    <Link to={"/movies"}>New Movies</Link>
+      <h1>Watchlist</h1> 
+    
+      
+      <Search displayMovie={displayMovie} movieState={movieState} />
+    
+      
+      
+      <Filter displayMovie={displayMovie} movieState={movieState}   />
+      {displayMovie.map((movie) => (
+        <MovieCard  key={movie.id} title={movie.title} description={movie.description} genre={movie.genre} />
+      ))}
+      
+      
     </div>
   );
 }

@@ -1,9 +1,15 @@
 import React from 'react'
 
-function Filter() {
+function Filter({displayMovie, movieState } ) {
+
+  const filterMovies = event => {
+    const value = event.target.value;
+    const filteredMovies = displayMovie.filter(movie => (`${movie.genre}`.includes(value)));
+    movieState(filteredMovies)
+  }
   return (
     <div>
-        <select>
+        <select onChange={filterMovies}>
             <option value="" selected>All</option>
             <option>Action</option>
             <option>Horror</option>
